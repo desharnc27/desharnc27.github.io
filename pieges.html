@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pièges</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="d-flex justify-content-center py-3 text-bg-dark">
+
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>
+                    <li><a href="./bases.html" class="nav-link px-2 text-secondary">Lois fondamentales</a></li>
+                    <li><a href="./git" class="nav-link px-2 text-white">Git</a></li>
+                    <li><a href="./other_ressources" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </header>
+    <br>
+    <div class="container">
+		<div class="p-3 mb-2 bg-yellow text-dark">
+			May this go yellow plz	!!!!!
+		</div>
+		
+        <h1 class="text-center">Dénombrement</h1>
+        <br>
+		
+		Lors de l'utilisation du principe d'addivité, une certaine erreur semble revenir régulièrement chez les étudiants. Rien de mieux qu'un exemple pour la présenter
+		
+		<div class="p-3 mb-2 bg-success text-dark">
+			À l'aide de notre alphabet (26 lettres, dont 6 voyelles), mais sans utiliser d'accent, combien de mots de 2 lettres contenant au moins une voyelle peut-on former?
+			<br><br>
+			<Strong>Mauvaise solution</Strong>
+			Pour la démarche qui suit, on va utilser:
+			<ul>
+				<li>"V" pour désigner une voyelle </li>
+				<li>"C" pour désigner une consonne </li>
+				<li>"N" pour désigner n'importe quelle lettre </li>
+			</ul>
+			L'étudiant se dit: " soit je mets une voyelle comme première lettre et n'importe quelle lettre comme deuxième lettre, soit je mets une voyelle comme deuxième lettre et n'importe quelle lettre comme première lettre. Autrement dit:<br>			
+			(VN) OU (NV), ce qui fait donc:
+			6 &times 26 + 26 &times 6 = 312 mots possibles.
+			<br><br>
+			Faux. Mauvaise réponse. Le nombre est surestimé.
+			<br>
+			Pourquoi? Parce que certains mots possibles ont été comptés deux fois, par exemple le mot "ae". "ae" fait partie des mots ayant une voyelle comme première lettre, mais fait aussi partie des mots ayant une voyelle comme deuxième lettre. En fait, dans la démarche précédente, tous les mots de forme VV sont comptés 2 fois. Pou obtenir la bonne réponse, il faut soustraire une fois chacun les mots qui ont été comptés deux fois. Il y a 6 &times 6 = 36 mots de format VV. La bonne réponse est donc:<br>
+			312 - 36 = <strong>276</strong>
+			<br><br>
+			En combinatoire, il y a parfois plus d'une manière valide de compter. Ici, on aurait pu aussi procéder ainsi:
+			<br><br>
+			<Strong>Solution 2</Strong>
+			<br>
+			Pour compter les mots de deux lettres ayant au moins une voyelle on peut aussi procéder ainsi: un mot sera d'exactement l'un des trois formats suivants: VC ou CV ou VV. Ces trois formats sont disjoints, donc on ne compte aucun mot en double.<br>
+			
+		
+		
+			
+		</div>
+		
+		<div class="p-3 mb-2 bg-danger text-dark">
+			Règle d'addition: si une tâche T_1 peut être effectuée de n_1 manières distinctes et qu'une tâche T_2 peut être effectuée de n_2 manières distinctes, alors il y a n_1 &times n_2 manières d'effectuer T_1 OU T_2.		
+		</div>
+		
+		En fait, vous avez déjà été témoin du principe d'addition sans qu'on l'ait mentionné explicitement. Dans un exemple de la page précédente, lorsqu'il fallait choisir un caractère pour la plaque d'immatriculation, ça pouvait être une lettre ou un chiffre. Il fallait donc choisir une lettre OU choisir un chiffre. Puisqu'il y a 26 lettres possibles et 10 chiffres possibles, le nombre de manière possibles de choisir une lettre OU un chiffre était de 10 + 26 = 36.
+		<br><br>
+		Vous remarquerez que jusqu'à maintenant, les mots ET et OU ont été souvent mis en majuscule. C'est pour bien faire la différence entre le principe d'additivité et le principe de multiplicité. Lorsqu'il faut faire l'une ET l'autre des tâches, le nombre de manières de faire les deux tâches est n_1 &times n_2. Mais s'il faut faire l'une OU l'autre des tâches, le nombre de manières de procéder est n_1 + n_2. Voici donc un petit abrégé symbolique pour s'en rappeler:
+		
+		<ul>
+			<li>ET: &times </li>
+			<li>OU: + </li>
+		</ul>
+		
+		Pour le prochain exemple, notre cher styliste Bob, de la page précédente, est de retour, cette fois-ci avec une garde-robe plus étoffée.
+	
+		
+		<div class="p-3 mb-2 bg-success text-dark">
+			Bob possède 5 chandails, 3 pantalons, 4 shorts et 3 ceintures. Il doit s'habiller. Pour y parvenir, il doit obligatoirement mettre un chandail. De plus, il doit aussi mettre un pantalon ou un short. Un pantalon nécessite absolument une ceinture. Au contraire, un short se porte toujours sans ceinture. De combien de manières peut-il s'habiller?
+			<br>
+			<br>
+			<strong>Solution</strong>
+			<br>
+			<br>
+			Bob doit s'habiller comme suit: chandail ET (short OU (pantalon ET ceinture)). Ainsi, le nombre de manières de s'habiller est:
+			<br>
+			5 &times (4 + 3 &times 3) =<br>
+			5 &times (4 + 9) =<br>
+			5 &times 13 =<br>
+			65			
+			
+		</div>
+		
+		
+</body>
+
+</html>
