@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Multiplicité</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="d-flex justify-content-center py-3 text-bg-dark">
+		<div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-2 text-white" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Matière</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./intro.html" class="px-2 dropdown-item">Introduction</a></li>
+							<li><a href="./bases.html" class="px-2 dropdown-item">Multiplicité</a></li>
+                            <li><a href="./or.html" class="px-2 dropdown-item">Additivité 1</a></li>
+                            <li><a href="./pieges.html" class="px-2 dropdown-item">Additivité 2</a></li>
+                        </ul>
+                    </li>
+					<li><a href="./hasher.html" class="nav-link px-2 text-white">Réponses</a></li>
+                    <li><a href="./other_ressources.html" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </header>
+    <br>
+    <div class="container">
+        <h1 class="text-center">Multiplicité</h1>
+        <br>
+		
+		Commençons immédiatement avec le théorème le plus important en combinatoire, le principe de multiplicité, (aussi appelé la règle de multiplication).
+		<div class="p-3 mb-2 bg-danger bg-opacity-50 text-dark">
+			Règle de multiplication: si une tâche T<sub>1</sub> peut être effectuée de n<sub>1</sub> manières distinctes et qu'une tâche T<sub>2</sub> peut être effectuée de n<sub>2</sub> manières distinctes, alors il y a n<sub>1</sub> &times n<sub>2</sub> manières d'effectuer T<sub>1</sub> ET T<sub>2</sub>.		
+		</div>
+		
+		Pour digérer le tout, voici un exemple qui servira aussi de preuve très informelle (pour rendre le théorème intuitif).
+		
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
+			Pour illustrer cette règle, prenons l'exemple de Bob qui doit choisir un short et un chandail pour s'habiller. Il possède 3 shorts (bleu, rouge et vert, respectivement) et 4 chandails (bleu, jaune, mauve, orange). De combien de manières peut-il s'habiller?
+			<br><br>
+			<strong>Solution intuitive</strong><br>
+			Avec chaque pantalon, il peut mettre n'importe quel des quatre chandails. Il est donc naturel de mettre toutes les possibilités d'habillage dans un tableau en deux dimensions.<br>
+			<img src="./pantchan.png" width="250" />
+			<br>
+			La rangée indique quel pantalon est choisi, tandis que la colonne indique quel chandail est choisi. Pour chaque case du tableau, (excluant les bordures en haut et à gauche), on a un habillage différent. Le nombre de manières de s'habiller correspond donc au nombre de cases dans le tableau. Le nombre de cases d'un tableau est toujours égal au produit de son nombre de rangées et de son nombre de colonnes, donc le nombre de manières de s'habiller est:  #pantalons &times #chandails = 3 &times 4 = 12.
+			<br><br>
+		</div>
+			Ceci étant dit, on ne pourrait pas parcourir tout ce tutoriel avec des dessins, car le nombre de dimensions est rarement de seulement 2, alors voici comment utiliser le théorème de multiplicité:
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
+			<strong>Solution</strong><br>
+			<ul>
+				<li>Tâche 1: choisir un pantalon (3 choix)</li>
+				<li>Tâche 2: choisir un chandail (4 choix)</li>
+			</ul>
+			Le nombre de manières de choisir un pantalon et un chandail est donc 3 &times 4 = 12.
+			
+		</div>
+		
+		Comme expliqué plus tôt, les dessins (tableaux) sont intuitifs, mais à portée limitée. Si Bob a en plus des casquettes, des bas et des boucles d'oreilles, il a 5 tâches à faire (5 objets vestimentaires à sélectionner). On ne peut pas dessiner un prisme en 5 dimensions! Il faut donc utiliser le principe de multiplicité. Cependant, il est avant tout nécessaire de généraliser le principe de multiplicité à plus de 2 tâches.
+		
+		<div class="p-3 mb-2 bg-danger bg-opacity-50 text-dark">
+			Règle de multiplication (généralisée): si des tâches T<sub>1</sub>, T<sub>2</sub> ... T<sub>k</sub> peuvent être effectuées de n<sub>1</sub>, n<sub>2</sub> ... n<sub>k</sub> manières respectivement, alors il y a n<sub>1</sub> &times n<sub>2</sub> ... &times  n<sub>k</sub> manières d'effectuer l'ensemble des tâches.		
+		</div>
+		
+		Voici un exemple un peu plus complexe d'utilisation de la règle de multiplication.
+		
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
+			À Gotham State, les numéros de plaque d'immatriculation des voitures doivent respecter un certain format. Ce sont des numéros à six caractères, chaque caractère étant un chiffre ou une lettre majuscule (un peu comme la plupart des numéros d'immatriculation au Québec). Cependant, à Gotham State, le premier caractère doit absolument être une lettre, tandis que les deux derniers caractères doivent absolument être des chiffres. Les trois autres caractères peuvent être l'un ou l'autre.
+			<br>
+			Par exemple, A6B375 et EEHK00 seraient des numéros valides, mais pas P33KB56, 7AHB88 et K7UWL9.
+			<br>
+			Combien de numéros d'immatriculation valides peut-on produire à Gotham State?
+			<br>
+			<br>
+			<strong>Solution</strong><br>
+			
+			Rappelons-nous qu'il existe 10 chiffres (de 0 à 9) et 26 lettres. Lorsque vient le temps de choisir un caractère, on a donc 10 choix s'il est obligatoire de choisir un chiffre, 26 choix s'il est obligatoire de choisir une lettre et 36 choix si on peut choisir un chiffre ou une lettre.
+			<br>
+			Il y a 6 tâches à faire, chacune correspondant à choisir le caractère d'un des six emplacements. On a:
+			<ul>
+				<li>26 choix pour le premier caractère</li>
+				<li>36 choix pour le deuxième caractère</li>
+				<li>36 choix pour le troisième caractère</li>
+				<li>36 choix pour le quatrième caractère</li>
+				<li>10 choix pour le cinquième caractère</li>
+				<li>10 choix pour le sixième caractère</li>
+			</ul>
+			
+			On peut donc produire 26 &times 36 &times 36 &times 36 &times 10 &times 10 = <strong>121 305 600</strong> différents numéros de plaque.			
+			
+		</div>
+		
+		<div class="p-3 mb-2 bg-warning bg-opacity-50 text-dark">
+			On voit ici l'une des applications de la combinatoire. Avant qu'une région ne décide quel sera le format de ses numéros d'immatriculation, il est important qu'elle s'assure que le format permet suffisamment de numéros de plaque distincts pour en fournir à toutes les voitures immatriculées dans une région, et cela pendant un assez grand nombre d'années.
+			<br>
+			Le même principe s'applique aux numéros de téléphone. Le numéro à 7 chiffres (***-****) permet seulement 10 &times 10 &times .... &times 10 = 10^7 = 10 000 000 possibilités. Ce nombre est évidemment insuffisant pour couvrir l'Amérique du Nord au complet et c'est pour cela que trois chiffres ont été ajoutés à gauche, à titre d'indicatif régional (l'indicatif de Montréal est 514). Malheureusement, Montréal a à elle seule a dépassé le besoin des 10M de numéros et l'indicatif régional 438 a donc aussi été attribué à Montréal en renfort. Plus récemment, même les numéros disponibles d'indicatif 438 ont commencé à se raréfier, alors un autre indicatif (263) commence à être utilisé à Montréal.
+		</div>
+		
+		<div class="p-3 mb-2 bg-info bg-opacity-50 text-dark">
+			Sur ordinateur, les couleurs sont en général représentées sous la forme de trois nombres, plus précisément sous forme RGB (niveau de rouge, niveau de vert, niveau de bleu). Chaque composante peut prendre une valeur entière entre 0 et 255 inclusivement. Par exemple:
+			<ul>				
+				<li>(0,255,0) est la couleur verte</li>
+				<li>(0,0,255) est la couleur bleue</li>
+				<li>(255,255,0) est la couleur jaune (car le jaune est une combinaison de rouge et de vert)</li>
+				<li>(165,42,42) est une teinte de brun</li>
+				<li>(0,0,0) est la couleur noire</li>
+				<li>(255,255,255) est la couleur blanche</li>
+				<li>Les différentes teintes de gris sont de forme (v,v,v), donc ayant la même valeur pour chaque composante</li>
+			</ul>
+			
+			<b> Combien de couleurs différentes peut-on former? </b><br>
+			Réponse encryptée: 043c11d1f6303cf0006426567c6879a038945321<br><br>
+			
+			<b> Combien de teintes de gris peut-on former? </b><br>
+			Réponse encryptée: dd7c1a3d9d5627da9aea5415e3d07202bfb5925e<br><br>
+			
+			La compagnie ChelouPrivacy exige que chacun de ses clients se crée un mot de passe. Pour ce site web, un mot de passe doit être d'exactement 5 caractères et posséder uniquement des caractères alphanumériques (chiffres, lettres minuscules et lettres majuscules).<br><br>
+			
+			<b> Combien de mots de passe peut-on former? </b><br>
+			Réponse encryptée: 528a6e5a031262efd8c2c049979db3ce750ac6a9<br><br>
+			
+			<b> Parmi ces mots de passe, combien n'ont ni lettre majuscule ni deux fois le même caractère? </b><br>
+			Réponse encryptée: 7293dc4616592b602ff3962ad8ca83289612f9eb<br><br>
+			
+		</div>
+		<div class="p-3 mb-2 bg-warning bg-opacity-50 text-dark">
+			Vous avez sûrement remarqué que les mots de passe sont, dans la vraie vie, plus longs que la limite fixée par ChelouPrivacy et peuvent utiliser une plus grande variété de caractères. En effet, la seule raison pour avoir conçu un tel exemple et que pour la réponse exacte puisse être contenue entièrement dans le petit écran de votre calculatrice. En réalité, si le nombre de possibilités pour les mots de passe ne déborde pas l'écran à 9 cases de votre calculatrice, ce n'est pas très sécuritaire... 
+		</div>
+		<div class="p-3 mb-2 bg-primary bg-opacity-50 text-dark">
+			Gotham State (voir le contexte plus haut sur cette page) a décidé qu'en plus des règles déjà décidées plus haut, une nouvelle règle s'ajoute pour ses plaques d'immatriculation: aucun caractère ne doit se répéter. Par exemple, A78A92 ne serait plus valide, car il y a deux "A".<br><br>
+			
+			<b>Combien de numéros de plaque différents peuvent être créés</b>, étant donné cette nouvelle contrainte?<br>
+			Réponse encryptée: 2043280024b63fa7da52a85fae0475461e854631<br><br>
+		</div>
+		
+		
+		<nav aria-label="Page navigation" class="m-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="./intro.html">Précédent</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="./or.html">Suivant</a>
+                </li>
+            </ul>
+        </nav>
+		
+		<footer class="py-3 my-4">
+			<p class="text-center text-muted">© 2022 Charles Desharnais</p>
+		</footer>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+		
+		
+</body>
+
+</html>

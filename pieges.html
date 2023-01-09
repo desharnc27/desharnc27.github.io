@@ -3,23 +3,32 @@
 <html>
 
 <head>
-    <title>Pièges</title>
+    <title>Addivitité</title>
     <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
     <header class="d-flex justify-content-center py-3 text-bg-dark">
-
-        <div class="container">
+		<div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>
-                    <li><a href="./bases.html" class="nav-link px-2 text-secondary">Lois fondamentales</a></li>
-                    <li><a href="./git" class="nav-link px-2 text-white">Git</a></li>
-                    <li><a href="./other_ressources" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
+                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-2 text-white" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Matière</a>
+                        <ul class="dropdown-menu">
+							<li><a href="./intro.html" class="px-2 dropdown-item">Introduction</a></li>
+                            <li><a href="./bases.html" class="px-2 dropdown-item">Multiplicité</a></li>
+                            <li><a href="./or.html" class="px-2 dropdown-item">Additivité 1</a></li>
+                            <li><a href="./pieges.html" class="px-2 dropdown-item">Additivité 2</a></li>
+                        </ul>
+                    </li>
+					<li><a href="./hasher.html" class="nav-link px-2 text-white">Réponses</a></li>
+                    <li><a href="./other_ressources.html" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
 
                 </ul>
 
@@ -28,77 +37,116 @@
     </header>
     <br>
     <div class="container">
-		<div class="p-3 mb-2 bg-yellow text-dark">
-			May this go yellow plz	!!!!!
-		</div>
 		
-        <h1 class="text-center">Dénombrement</h1>
+        <h1 class="text-center">Additivité (suite)</h1>
         <br>
 		
-		Lors de l'utilisation du principe d'addivité, une certaine erreur semble revenir régulièrement chez les étudiants. Rien de mieux qu'un exemple pour la présenter
+		Lors de l'utilisation du principe d'additivité, une certaine erreur semble revenir régulièrement chez les étudiants. Rien de mieux qu'un exemple pour la présenter.
 		
-		<div class="p-3 mb-2 bg-success text-dark">
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
 			À l'aide de notre alphabet (26 lettres, dont 6 voyelles), mais sans utiliser d'accent, combien de mots de 2 lettres contenant au moins une voyelle peut-on former?
 			<br><br>
-			<Strong>Mauvaise solution</Strong>
-			Pour la démarche qui suit, on va utilser:
+			
+			Pour la démarche qui suit, on va utiliser:
 			<ul>
 				<li>"V" pour désigner une voyelle </li>
 				<li>"C" pour désigner une consonne </li>
 				<li>"N" pour désigner n'importe quelle lettre </li>
 			</ul>
+			<Strong>Mauvaise solution</Strong><br>
 			L'étudiant se dit: " soit je mets une voyelle comme première lettre et n'importe quelle lettre comme deuxième lettre, soit je mets une voyelle comme deuxième lettre et n'importe quelle lettre comme première lettre. Autrement dit:<br>			
 			(VN) OU (NV), ce qui fait donc:
 			6 &times 26 + 26 &times 6 = 312 mots possibles.
 			<br><br>
-			Faux. Mauvaise réponse. Le nombre est surestimé.
+			Mauvaise réponse. Le nombre est surestimé.
 			<br>
 			Pourquoi? Parce que certains mots possibles ont été comptés deux fois, par exemple le mot "ae". "ae" fait partie des mots ayant une voyelle comme première lettre, mais fait aussi partie des mots ayant une voyelle comme deuxième lettre. En fait, dans la démarche précédente, tous les mots de forme VV sont comptés 2 fois. Pou obtenir la bonne réponse, il faut soustraire une fois chacun les mots qui ont été comptés deux fois. Il y a 6 &times 6 = 36 mots de format VV. La bonne réponse est donc:<br>
 			312 - 36 = <strong>276</strong>
-			<br><br>
-			En combinatoire, il y a parfois plus d'une manière valide de compter. Ici, on aurait pu aussi procéder ainsi:
-			<br><br>
-			<Strong>Solution 2</Strong>
-			<br>
-			Pour compter les mots de deux lettres ayant au moins une voyelle on peut aussi procéder ainsi: un mot sera d'exactement l'un des trois formats suivants: VC ou CV ou VV. Ces trois formats sont disjoints, donc on ne compte aucun mot en double.<br>
-			
-		
-		
-			
 		</div>
 		
-		<div class="p-3 mb-2 bg-danger text-dark">
-			Règle d'addition: si une tâche T_1 peut être effectuée de n_1 manières distinctes et qu'une tâche T_2 peut être effectuée de n_2 manières distinctes, alors il y a n_1 &times n_2 manières d'effectuer T_1 OU T_2.		
+		
+		<div class="p-3 mb-2 bg-danger bg-opacity-50 text-dark">
+			Dans ces cas exceptionnels où des manières de faire des tâches se dupliquent, on peut ajuster le principe d'additivité: le nombre de manières de réaliser une tâche T<sub>1</sub> ou une tâche T<sub>2</sub> correspond à n<sub>1</sub> + n<sub>2</sub> - k, où:
+			<ul>
+				<li>n<sub>1</sub> est le nombre de manières de réaliser T<sub>1</sub> </li>
+				<li>n<sub>2</sub> est le nombre de manières de réaliser T<sub>2</sub> </li>
+				<li>k est le nombre de manières faisant à la fois partie de celles qui réalisent T<sub>1</sub> et T<sub>2</sub></li>
+			</ul>	
+		</div>
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
+			Dans l'exemple précédent, pour créer un mot de deux lettres d'au moins une voyelle, il fallait réaliser une deux tâches suivantes: créer un mot ayant une voyelle comme première lettre OU un mot ayant une deuxième lettre comme voyelle. Il y avait respectivement 6 &times 26 et 26 &times 6 manières d'effectuer chaque tâche. Toutefois, il y avait 6 &times 6 manières qui effectuaient les deux tâches en même temps, donc le nombre de manières d'effectuer l'une ou l'autre des tâches était 6 &times 26 + 26 &times 6 - 6 &times 6 = 156 + 156 - 36 = <strong>276</strong> .
 		</div>
 		
-		En fait, vous avez déjà été témoin du principe d'addition sans qu'on l'ait mentionné explicitement. Dans un exemple de la page précédente, lorsqu'il fallait choisir un caractère pour la plaque d'immatriculation, ça pouvait être une lettre ou un chiffre. Il fallait donc choisir une lettre OU choisir un chiffre. Puisqu'il y a 26 lettres possibles et 10 chiffres possibles, le nombre de manière possibles de choisir une lettre OU un chiffre était de 10 + 26 = 36.
 		<br><br>
-		Vous remarquerez que jusqu'à maintenant, les mots ET et OU ont été souvent mis en majuscule. C'est pour bien faire la différence entre le principe d'additivité et le principe de multiplicité. Lorsqu'il faut faire l'une ET l'autre des tâches, le nombre de manières de faire les deux tâches est n_1 &times n_2. Mais s'il faut faire l'une OU l'autre des tâches, le nombre de manières de procéder est n_1 + n_2. Voici donc un petit abrégé symbolique pour s'en rappeler:
-		
-		<ul>
-			<li>ET: &times </li>
-			<li>OU: + </li>
-		</ul>
-		
-		Pour le prochain exemple, notre cher styliste Bob, de la page précédente, est de retour, cette fois-ci avec une garde-robe plus étoffée.
-	
-		
-		<div class="p-3 mb-2 bg-success text-dark">
-			Bob possède 5 chandails, 3 pantalons, 4 shorts et 3 ceintures. Il doit s'habiller. Pour y parvenir, il doit obligatoirement mettre un chandail. De plus, il doit aussi mettre un pantalon ou un short. Un pantalon nécessite absolument une ceinture. Au contraire, un short se porte toujours sans ceinture. De combien de manières peut-il s'habiller?
+		En combinatoire, il y a parfois plus d'une manière valide de compter. Si on veut éviter de gérer des manières dupliquées pour résoudre le problème précédent, on peut:
+		<br><br>
+		<div class="p-3 mb-2 bg-success bg-opacity-50 text-dark">
+			<Strong>Solution 2: </Strong> travailler seulement avec des tâches disjointes.
 			<br>
+			Pour compter les mots de deux lettres ayant au moins une voyelle, on peut aussi procéder ainsi: un mot sera d'exactement l'un des trois formats suivants: VC ou CV ou VV. Ces trois formats sont disjoints (i.e. ne partagent aucun mot) . Il y a donc: <br>
+			6 &times 20 + 20 &times 6 + 6 &times 6 = 120 + 120 + 36 =  <strong>276</strong> possibilités.
+			<br><br>
+			<Strong>Solution 3: </Strong> soustraire les mots qui n'ont pas de voyelles.
 			<br>
-			<strong>Solution</strong>
-			<br>
-			<br>
-			Bob doit s'habiller comme suit: chandail ET (short OU (pantalon ET ceinture)). Ainsi, le nombre de manières de s'habiller est:
-			<br>
-			5 &times (4 + 3 &times 3) =<br>
-			5 &times (4 + 9) =<br>
-			5 &times 13 =<br>
-			65			
+			Il y a 26 &times 26 mots de deux lettres au total. Parmi ces mots, les seuls ne respectant pas la contrainte d'avoir une voyelle sont ceux de format CC. Le nombre de mots de 2 lettres ayant au moins une voyelle est donc:<br>
+			26 &times 26 - 20 &times 20 =<br>
+			676 - 400 =<br>
+			<strong>276</strong>
 			
 		</div>
 		
+		<div class="p-3 mb-2 bg-info bg-opacity-50 text-dark">
+			Note: le modèle de couleurs RGB a été expliqué <a href = "./bases.html">dans une page précédente</a>.<br><br>
+			
+			Un programmeur web qui souhaite sensibiliser les gens au daltonisme a pris une décision pour son site. Absolument toutes les couleurs utilisées sur son site web feront partie d'un ensemble restreint de couleurs: celles qui ont dont au moins 2 composantes RGB sur 3 sont égales. Par exemple, il pourrait utiliser les couleurs (25,166,25), (177,177,177) et (57,146,146), mais pas (183,181,101).<br><br>
+			
+			<b>Combien de couleurs différentes peuvent être utilisées sur son site?</b><br>
+			Réponse encryptée: 200c734c2acc98624988eb875cd9ad7b3d25418a<br><br>
+		</div>
+		<div class="p-3 mb-2 bg-warning bg-opacity-50 text-dark">
+			Note: sachez que le modèle de couleur restreint à la question précédente ne correspond pas vraiment à la réalité en ce qui concerne la palette de couleur que les personnes daltoniennes perçoivent. Le daltonisme est scientifiquement plus complexe que ça! Si ça vous intéresse: <a href = "https://fr.wikipedia.org/wiki/Daltonisme">Daltonisme Wiki</a>.<br><br>
+		</div>
+		<div class="p-3 mb-2 bg-info bg-opacity-50 text-dark">
+			La compagnie ChelouPrivacy est de retour <a href = "./bases.html">(introduite dans une page précédente)</a>!<br><br>
+			
+			Rappel: ChelouPrivacy exige que chacun de ses clients se crée un mot de passe. Pour ce site web, un mot de passe doit être d'exactement 5 caractères et posséder uniquement des caractères alphanumériques (chiffres, lettres minuscules et lettres majuscules)<br><br>
+			
+			Nouvelle contrainte: ChelouPrivacy a remarqué que ses clients ne profitaient pas de la variété qu'offre les caractères et avaient tendance à avoir des mots de passe faciles tout en lettre minuscules du style "hello" ou "tarte". ChelouPrivacy a donc ajouté une contrainte: les mots de passe doivent obligatoirement contenir au moins un chiffre.<br><br>			
+			
+			
+			<b> Combien de mots de passe peut-on former, maintenant? </b><br>
+			Réponse encryptée: b35e47eb0228924de7238d83de95a99b36bb131f<br><br>
+			
+		</div>
+		<div class="p-3 mb-2 bg-primary bg-opacity-50 text-dark">
+			Finalement, puisque les clients persistent encore à presque toujours utiliser des lettres minuscules, ChelouPrivacy a décidé d'ajouter une nouvelle contrainte.<br><br>
+			
+			Nouvelle contrainte: non seulement les mots de passe de 5 lettres doivent contenir au moins un chiffre, mais ils doivent aussi contenir au moins une lettre majuscule.<br><br>			
+			
+			
+			<b> Combien de mots de passe peut-on former, maintenant? </b><br>
+			Réponse encryptée: 7ef0aafcd23749e274be293546241a2c7bb52d27<br><br>
+			
+		</div>
+		<nav aria-label="Page navigation" class="m-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="./or.html">Précédent</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link">Suivant</a>
+                </li>
+            </ul>
+        </nav>
+		
+		<footer class="py-3 my-4">
+			<p class="text-center text-muted">© 2022 Charles Desharnais</p>
+		</footer>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 		
 </body>
 
