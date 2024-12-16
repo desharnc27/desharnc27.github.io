@@ -11,29 +11,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-    <header class="d-flex justify-content-center py-3 text-bg-dark">
-		<div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>                   
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle px-2 text-white" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Matière</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./intro.html" class="px-2 dropdown-item">Introduction</a></li>
-							<li><a href="./bases.html" class="px-2 dropdown-item">Multiplicité</a></li>
-                            <li><a href="./or.html" class="px-2 dropdown-item">Additivité 1</a></li>
-                            <li><a href="./pieges.html" class="px-2 dropdown-item">Additivité 2</a></li>
-                        </ul>
-                    </li>
-					<li><a href="./hasher.html" class="nav-link px-2 text-white">Réponses</a></li>
-                    <li><a href="./other_resources.html" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
-
-                </ul>
-
-            </div>
-        </div>
-    </header>
+	<div id="header"> If you see this message, header does not load properly.</div>
     <br>
     <div class="container">
         <h1 class="text-center">Additivité</h1>
@@ -41,7 +19,9 @@
 		
 		
 		<div class="p-3 mb-2 bg-danger bg-opacity-50 text-dark">
-			Règle d'addition: si une tâche T<sub>1</sub> peut être effectuée de n<sub>1</sub> manières distinctes et qu'une tâche T<sub>2</sub> peut être effectuée de n<sub>2</sub> manières distinctes, alors il y a n<sub>1</sub> &times n<sub>2</sub> manières d'effectuer T<sub>1</sub> OU T<sub>2</sub>.		
+			Règle d'addition: si une tâche T<sub>1</sub> peut être effectuée de n<sub>1</sub> manières distinctes et qu'une tâche T<sub>2</sub> peut être effectuée de n<sub>2</sub> manières distinctes, alors il y a n<sub>1</sub> + n<sub>2</sub> manières d'effectuer T<sub>1</sub> OU T<sub>2</sub>.
+			<br><br>
+			Note: cette règle fonctionne uniquement s'il n'y a aucune manière commune à T<sub>1</sub> et T<sub>2</sub>, mais on expliquera ce détail à la page suivante.
 		</div>
 		
 		En fait, vous avez déjà été témoin du principe d'addition sans qu'on ne l'ait mentionné explicitement. Dans un exemple de la page précédente, lorsqu'il fallait choisir un caractère pour la plaque d'immatriculation, ça pouvait être une lettre ou un chiffre. Il fallait donc choisir une lettre OU choisir un chiffre. Puisqu'il y a 26 lettres possibles et 10 chiffres possibles, le nombre de manières possibles de choisir une lettre OU un chiffre était de 10 + 26 = 36.
@@ -90,7 +70,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+	<script>
+		fetch('header.html')
+		.then(response => response.text())
+		.then(data => {
+		  document.getElementById('header').innerHTML = data;
+		});
+	</script>
 		
 </body>
-
 </html>

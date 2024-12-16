@@ -12,36 +12,12 @@
 </head>
 
 <body>
-    <header class="d-flex justify-content-center py-3 text-bg-dark">
-		<div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./index.html" class="nav-link px-2 text-white">Accueil</a></li>                   
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle px-2 text-white" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Matière</a>
-                        <ul class="dropdown-menu">
-							<li><a href="./intro.html" class="px-2 dropdown-item">Introduction</a></li>
-                            <li><a href="./bases.html" class="px-2 dropdown-item">Multiplicité</a></li>
-                            <li><a href="./or.html" class="px-2 dropdown-item">Additivité 1</a></li>
-                            <li><a href="./pieges.html" class="px-2 dropdown-item">Additivité 2</a></li>
-                        </ul>
-                    </li>
-					<li><a href="./hasher.html" class="nav-link px-2 text-white">Réponses</a></li>
-                    <li><a href="./other_resources.html" class="nav-link px-2 text-white">Ressources supplémentaires</a></li>
-
-                </ul>
-
-            </div>
-        </div>
-    </header>
+    <div id="header"> If you see this message, header does not load properly.</div>
     <br>
-	
-	
     <div class="container">
 		<h1 class="text-center">Ressources supplémentaires</h1>
 
-		Les manières d'enseigner et d'apprendre étant variées, voici certains liens vers des ressources audiovisuelles pouvant vous aider.
+		<!--Les manières d'enseigner et d'apprendre étant variées, voici certains liens vers des ressources audiovisuelles pouvant vous aider.
 		
 		<div class="p-3 mb-2 bg-secondary bg-opacity-50 text-dark">
 			Principe de multiplicité: <a href = "https://www.youtube.com/watch?v=hWkIwXXEECc">Yvan Monka - Multiplicité</a>.<br><br>
@@ -52,7 +28,8 @@
 				Yvan Monka - Arrangements, permutations, combinaisons</a>.<br><br>
 				
 			
-		</div>
+		</div>-->
+		Rien à afficher ici, pour le moment...
         
 		
 		<footer class="py-3 my-4">
@@ -63,6 +40,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+	<script>
+		fetch('header.html')
+		.then(response => response.text())
+		.then(data => {
+		  document.getElementById('header').innerHTML = data;
+		});
+	</script>
 		
 </body>
 
