@@ -1,0 +1,12 @@
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore Bower dependencies
+bower_components/
+
+# Ignore NetBeans project folder
+nbproject/
+
+# Optional: Ignore OS-specific files
+.DS_Store
+Thumbs.db

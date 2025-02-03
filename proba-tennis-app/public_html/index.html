@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tennis Probability Calculator</title>
+        <link rel="stylesheet" href="styles.css">
+        <!-- Bootstrap CSS (required for styling) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <!-- Main Modal (Main UI) -->
+        <div id="main-modal" class="modal">
+            <div id="main-ui">
+                <header>
+                    <h1>Tennis Probability Calculator</h1>
+                </header>
+
+                <!-- Scoreboard -->
+                <section id="match-state">
+                    <h2>Match State</h2>
+                    <table class="serve-table">
+                        <thead>
+                            <tr>
+                                <th>Serve Selection</th>
+                                <th>TB Serve Selection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label><input type="radio" name="serve" value="p1" checked> P1</label>
+                                    <label><input type="radio" name="serve" value="p2"> P2</label>
+                                </td>
+                                <td>
+                                    <label><input type="radio" name="tb-serve" value="p1" disabled> P1</label>
+                                    <label><input type="radio" name="tb-serve" value="p2" disabled> P2</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Sets</th>
+                                <th>Games</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="score-body">
+                            <tr>
+                                <td>P1</td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                            </tr>
+                            <tr>
+                                <td>P2</td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                                <td><button class="up">↑</button><span>0</span><button class="down">↓</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Options and Results Side by Side -->
+                <section class="options-results-container">
+                    <div id="options">
+                        <h2>Options</h2>
+                        <div class="options-container">
+                            <div id="mode-selection">
+                                <label><input type="radio" name="mode" value="editable" checked> Editable</label>
+                                <label><input type="radio" name="mode" value="game-on"> Game Flow</label>
+                                <!--<button id="refresh-button">Refresh Calculations</button>-->
+                            </div>
+                            <div id="options-button">
+                                <button id="menu">Options & More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="results">
+                        <h2>Results</h2>
+                        <!-- TODO: the ids may be removed -->
+                        <span id="game-prob">?</span>
+                        <span id="set-prob">?</span>
+                        <span id="match-prob">?</span>
+                        <span id="point-importance">?</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Intermediate Options Modal -->
+        <div id="options-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Options</h2>
+                <!-- Details Text -->
+                <p id="options-explanation" class="highlight">Hover over or click a button for details.</p>
+
+                <div id="menu-buttons" class="modal-buttons" >
+                    <!-- JavaScript will populate buttons here -->
+                    <!-- Example button structure (to be dynamically added by JS): -->
+                    <!-- <button data-translate="edit_probabilities">Edit Base Probabilities</button> -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Probas Modal -->
+        <div id="probas-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Edit Base Probabilities</h2>
+                <h3>Choose the probability of player 1 winning a point</h3>
+                <form>
+                    <div class="probability-row">
+                        <label for="serve-prob">With serve:</label>
+                        <input type="text" id="serve-prob" name="serve-prob" value="50%">
+                    </div>
+
+                    <div class="probability-row">
+                        <label for="return-prob">On return:</label>
+                        <input type="text" id="return-prob" name="return-prob" value="50%">
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button type="button" id="apply-probas">Apply</button>
+                        <button type="button" id="cancel-probas">Cancel</button>
+                    </div>
+                </form>
+                <!-- Dropdown for Built-in Probabilities -->
+                <label for="builtin-probas">You may choose standard probabilities:</label>
+                <select id="builtin-probas">
+                    <option value="">-- Select an Option --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Rules Modal -->
+        <div id="rules-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Edit Game Parameters</h2>
+                <p id="rules-explanation" class="highlight">Twado</p>
+                <table id="rules-table">
+                </table>
+                <!-- Copy Regular to Final Button -->
+                <div class="modal-buttons">
+                    <button type="button" id="copy-regular-to-final">Copy Regular to Final</button>
+                    <button type="button" id="apply-rules">Close and Apply</button>
+                    <button type="button" id="cancel-rules">Cancel</button>
+                </div>
+                <!-- Dropdown for Built-in rules -->
+                <label for="builtin-rules">You may choose existing format:</label>
+                <select id="builtin-rules">
+                    <option value="">-- Select an Option --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Precision Modal -->
+        <div id="precision-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Display of Resulting Probabilities</h2>
+
+                <!-- Type of Value Selection -->
+                <div class="precision-section">
+                    <label>Type of Value:</label>
+                    <div class="button-group" id="denominator-buttons-container">
+                        <!-- JS will dynamically add buttons here -->
+                    </div>
+                </div>
+
+                <!-- Precision Selection -->
+                <div class="precision-section">
+                    <label>Precision of Value:</label>
+                    <div class="button-group" id="precision-buttons-container">
+                        <!-- JS will dynamically add buttons here -->
+                    </div>
+                </div>
+
+                <!-- Example Display -->
+                <div class="precision-section">
+                    <label>Example:</label>
+                    <span id="precision-example-display">3/7 → ?</span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-buttons">
+                    <button type="button" id="apply-precision">Apply</button>
+                    <button type="button" id="cancel-precision">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- About Modal -->
+        <div class="modal hidden" id="about-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">About</h5>
+                        <button type="button" class="btn-close" id="about-close"></button>
+                    </div>
+                    <div class="modal-body" id="about-modal-body">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.10/purify.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <!-- Bootstrap JavaScript Bundle (required for modals and components) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="ui/main-ui.js" type="module"></script>
+    </body>
+</html>

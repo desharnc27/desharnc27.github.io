@@ -1,0 +1,373 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Main Container */
+#main-ui {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+button:disabled {
+    background-color: #f9f9f9;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Table for Match State */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Serve Selection */
+label {
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+/* Inputs */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Results Panel */
+#results {
+    flex: 1;
+    text-align: center;
+}
+
+#results span {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Options Panel */
+#options {
+    flex: 1;
+}
+
+#mode-selection, #options-button {
+    text-align: center;
+    flex: 1;
+}
+
+#mode-selection {
+    margin-right: 20px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal:not(.hidden) {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.modal .close-modal {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.modal .close-modal:hover {
+    background-color: #c9302c;
+}
+
+.options-results-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Optional spacing between options and results */
+}
+
+/* Compact table styling */
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+#rules-table td {
+    padding: 5px 10px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+#rules-table button {
+    font-size: 0.8em;
+    padding: 2px 5px;
+}
+
+/* Adjust modal content for better use of space */
+.modal-content {
+    max-width: 600px; /* Limit modal width */
+    overflow-y: auto; /* Allow scrolling for smaller screens */
+}
+
+.highlight {
+    font-size: 0.85em;
+    background-color: #ffffcc;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: block;
+    height: 50px; /* Adjust as needed */
+    overflow-y: auto; /* Allow scrolling for long text */
+    transition: height 0.2s ease; /* Optional smooth animation */
+}
+
+
+
+#options-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* Ensures modal doesn’t exceed viewport height */
+    overflow: hidden; /* Prevents modal overflow issues */
+}
+#menu-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Adds spacing between buttons */
+    max-height: 300px; /* Adjust based on needs */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px;
+    flex-grow: 1; /* Ensures it fills available space */
+    max-height: 60vh; /* Adjust to prevent cutting off first/last buttons */
+}
+
+#rules-explanation {
+    height: 50px; /* Adjust as needed */
+    overflow-y: auto; /* Allow scrolling for long text */
+    transition: height 0.2s ease; /* Optional smooth animation */
+}
+
+/* Style for probability rows */
+.probability-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.probability-row label {
+    width: 150px; /* Adjust width as needed */
+    margin-right: 10px;
+    text-align: right;
+}
+
+.probability-row input {
+    flex: 1; /* Allow input to take remaining space */
+    padding: 5px;
+}
+
+/* Ensure About Modal is centered */
+#about-modal .modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 700px; /* Prevent excessive width */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure modal body is scrollable for long text */
+#about-modal .modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    text-align: left; /* Ensure the text is left-aligned */
+}
+
+/* Fix button alignment */
+#about-modal .modal-footer {
+    text-align: right;
+    padding: 10px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: black; /* Ensures visibility on light and dark backgrounds */
+    font-weight: bold; /* Makes it thicker */
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.btn-close:hover {
+    color: red; /* More visible hover effect */
+}
+
+/*---- precision introduction -----*/
+
+/* Precision Modal Styling */
+#precision-modal .modal-content {
+    width: 50%;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+}
+
+.precision-section {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+#example-display {
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* General button group styling */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* Individual buttons in the group */
+.button-group button {
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+/* Hover effect */
+.button-group button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Selected button */
+.button-group button.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+
+/* ------------ options button fanciness ------------ */
+
+#options-button {
+    background-color: rgba(100, 255, 100, 0.3); /* Standard blue */
+    color: white;
+    font-weight: 600; /* Slightly bolder than normal */
+    font-size: 1.05em; /* Just a tiny increase */
+    padding: 8px 14px; /* Balanced padding */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border-radius: 5px; /* Soft edges */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+#options-button:hover {
+    background-color: #005BAA; /* Slightly darker blue */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+#options-button:active {
+    background-color: #003E7E; /* Even darker blue for click effect */
+    transform: scale(0.98);
+}
