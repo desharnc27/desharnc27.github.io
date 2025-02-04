@@ -11,7 +11,7 @@ function loadAboutText(lang) {
         return;
     }
     
-    let filename = lang === AUTHOR ? "personal.md" : `${lang}-about.md`;    
+    let filename = lang === AUTHOR ? "personal.txt" : `${lang}-about.txt`;    
     let filePath = "../" + filename;
 
     fetch(filePath)
