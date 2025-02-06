@@ -291,7 +291,7 @@ input[type="text"] {
 
 /* Precision Modal Styling */
 #precision-modal .modal-content {
-    width: 50%;
+    width: 100%;
     max-width: 600px;
     text-align: center;
     padding: 20px;
