@@ -181,7 +181,7 @@ items.forEach((infoItem, index) => {
             console.error(`calledFct for ${infoItem.getName()} is not a valid function.`);
         }
     });
-    button.addEventListener('mouseenter', () => {
+    button.addEventListener('pointerenter', () => {
         document.getElementById("options-explanation").textContent = infoItem.getExplanation();
     });
 

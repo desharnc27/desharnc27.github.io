@@ -271,7 +271,7 @@ export class MatchState {
             message = "Invalid tiebreaker score";
         } else {
             target = this.#calx.getJeuTarget();
-            highestUnfinish = target;
+            highestUnfinish = target - 1;
             message = "Invalid in-game score";
         }
 
