@@ -250,7 +250,7 @@ input[type="text"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 95%;
     max-width: 700px; /* Prevent excessive width */
     background: white;
     border-radius: 8px;
@@ -374,22 +374,4 @@ input[type="text"] {
 
 /* ------------ general small device fix ------------ */
 
-/* Ensure button-number-button stays in one line inside #score-body */
-#score-body td {
-    white-space: nowrap; /* Prevents wrapping */
-}
 
-/* Ensure the button-span-button structure stays inline inside #score-body */
-#score-body td > button,
-#score-body td > span {
-    display: inline-block; /* Keeps them on the same row */
-    vertical-align: middle; /* Ensures proper alignment */
-}
-
-/* Set a fixed width for numbers to avoid shifting inside #score-body */
-#score-body td > span {
-    display: inline-block;
-    text-align: center;
-    width: 2ch; /* Ensures space for at least 2-digit numbers */
-    min-width: 2ch;
-}
