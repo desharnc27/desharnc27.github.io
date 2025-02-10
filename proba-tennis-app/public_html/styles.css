@@ -164,24 +164,32 @@ input[type="text"] {
     gap: 20px; /* Optional spacing between options and results */
 }
 
-/* Compact table styling */
+/* Ensure rules table is responsive */
 #rules-table {
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
 }
 
-#rules-table td {
-    padding: 5px 10px;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 0.9em;
-    white-space: nowrap; /* Prevent wrapping */
+/* Keep text readable but truncatable */
+#rules-table td:first-child {
+    max-width:  40vw;  /* Limits attribute width */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." when text overflows */
+    white-space: nowrap; /* Prevents breaking into multiple lines */
 }
 
+/* Ensure arrows are always visible */
+#rules-table td:last-child {
+    text-align: right;
+    min-width: 50px; /* Ensures space for the buttons */
+}
+
+/* Keep buttons small but visible */
 #rules-table button {
     font-size: 0.8em;
     padding: 2px 5px;
+    flex-shrink: 0; /* Prevents buttons from shrinking */
 }
 
 /* Adjust modal content for better use of space */
@@ -373,5 +381,6 @@ input[type="text"] {
 }
 
 /* ------------ general small device fix ------------ */
+
 
 
