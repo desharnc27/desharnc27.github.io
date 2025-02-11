@@ -40,8 +40,11 @@ function setDetails(text) {
     const detailElement = document.getElementById('rules-explanation');
     detailElement.textContent = text;
 }
-function setDetailsByIdx(descIdx) {
+function setDetailsByParameterIdx(descIdx) {
     setDetails(Csts.getParameterDescriptor(descIdx).getLongDesc());
+}
+function setDetailsByFormatIdx(formatIdx) {
+    setDetails(Rules.getRulesDetail(formatIdx));
 }
 function setDefaultDetails() {
     setDetails("Click any label for a more detailed explanation");
@@ -88,14 +91,14 @@ function rulesUiSetup() {
             // Add hover listeners for the details display
             const rowElement = upButton.closest('tr');
             /*rowElement.addEventListener('mouseover', () => {
-             setDetailsByIdx(i);
+             setDetailsByParameterIdx(i);
              });
              
              rowElement.addEventListener('mouseleave', () => {
              setDefaultDetails();
              });*/
             rowElement.addEventListener('click', () => {
-                setDetailsByIdx(i);
+                setDetailsByParameterIdx(i);
             });
         }
     }
@@ -138,6 +141,7 @@ function iterate(attr, up) {
     if (change) {
         resetDropdown(RULES_DROPDOWN_ID);
         refreshAttributeDisplay(attr);
+        setDefaultDetails();
     }
 }
 
@@ -252,9 +256,10 @@ export function operationsToSwitchToRulesWindow(rules) {
     setDefaultDetails();
 }
 
-function actionWhenBuiltinFormatChosen(chosenIndex) {
-    const newRules = Rules.createRuleById(chosenIndex);
+function actionWhenBuiltinFormatChosen(chosenIdx) {
+    const newRules = Rules.createRuleById(chosenIdx);
     injectRules(newRules);
+    setDetailsByFormatIdx(chosenIdx);
     refreshAllAttributesDisplays();
 }
 setupRulesHTML();
