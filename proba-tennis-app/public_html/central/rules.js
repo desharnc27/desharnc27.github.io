@@ -36,7 +36,7 @@ export class Rules {
         res[Rules.DEBUG] = "debug format";
         return res;
     }
-    
+
     static #makeRuleDetails() {
         const res = new Array(Rules.#NB_FORMATS);
         res[Rules.STANDARD] = "Standard format for singles";
@@ -60,7 +60,7 @@ export class Rules {
     static getAllRuleNames() {
         return Rules.#RULE_NAMES.slice();
     }
-    
+
     static getRulesDetail(id) {
         return Rules.#RULE_DETAILS[id];
     }
@@ -102,26 +102,26 @@ export class Rules {
     static grandSlam2024() {
         const pp = Rules.oldUSOpen();
         pp.sizeOfFinalTB = 10;
-        return pp;  
+        return pp;
     }
     static doubles2024() {
         const pp = Rules.doublesGS2024();
         pp.gapFinalTB = -1;
         pp.sizeOfFinalSet = 1;
-        return pp;  
+        return pp;
     }
     static doublesGS2024() {
         const pp = new Rules();
         pp.sizeOfFinalTB = 10;
-        return pp;  
+        return pp;
     }
-    
+
     static wimby2021() {
         const pp = Rules.oldUSOpen();
         pp.gapFinalTB = 6;
         return pp;
     }
-    static firstNextGen(){
+    static firstNextGen() {
         const pp = new Rules();
         pp.sizeOfMatch = 3;
         pp.sizeOfRegSet = 4;
@@ -150,9 +150,7 @@ export class Rules {
         pp.gapFinalTB = -2;
         return pp;
     }
-    
-    
-    
+
     static debugSmallCombo() {
         const pp = new Rules();
         pp.advantages = false;

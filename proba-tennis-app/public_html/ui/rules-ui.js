@@ -90,14 +90,9 @@ function rulesUiSetup() {
 
             // Add hover listeners for the details display
             const rowElement = upButton.closest('tr');
-            /*rowElement.addEventListener('mouseover', () => {
-             setDetailsByParameterIdx(i);
-             });
-             
-             rowElement.addEventListener('mouseleave', () => {
-             setDefaultDetails();
-             });*/
-            rowElement.addEventListener('click', () => {
+            const rowLeft = rowElement.firstChild;
+
+            rowLeft.addEventListener('click', () => {
                 setDetailsByParameterIdx(i);
             });
         }

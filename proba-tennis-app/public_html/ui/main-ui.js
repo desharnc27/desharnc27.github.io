@@ -344,17 +344,17 @@ getScoreArrows().forEach((button, index) => {
 
     button.addEventListener('click', (e) => {
         /*let time = Date.now();
-        if (index !== lastClickIdx) {
-            powerClick = 0;
-        } else {
-            powerClick += 1 - (time - lastClickTime) / 750;
-            if (powerClick < 0) {
-                powerClick = 0;
-            }
-        }
-        lastClickIdx = index;
-        lastClickTime = time;
-        handleArrowClick(player, category, sg * Math.floor(1 + powerClick));*/
+         if (index !== lastClickIdx) {
+         powerClick = 0;
+         } else {
+         powerClick += 1 - (time - lastClickTime) / 750;
+         if (powerClick < 0) {
+         powerClick = 0;
+         }
+         }
+         lastClickIdx = index;
+         lastClickTime = time;
+         handleArrowClick(player, category, sg * Math.floor(1 + powerClick));*/
         handleArrowClick(player, category, sg);
     });
 });

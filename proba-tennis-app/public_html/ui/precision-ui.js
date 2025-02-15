@@ -43,9 +43,6 @@ export function operationsToSwitchToPrecisionWindow(asPercentageX, precisionX) {
 //Everything next is only executed once
 
 
-function setGroupSelection(containerId, button) {
-
-}
 function createButtonGroup(containerId, options, groupName, defaultIndex) {
     const container = document.getElementById(containerId);
 

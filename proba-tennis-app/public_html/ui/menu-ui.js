@@ -120,6 +120,15 @@ let infoPrecision = new MenuItemInfo(
         },
         "Change the display type (percentage or /1) and the precision of the resulting probabilities"
         );
+let infoTheme = new MenuItemInfo(
+        "menu-theme-button",
+        "Switch luminosity",
+        function () {
+            document.body.classList.toggle("dark-theme");
+            switchModal(ModalNames.getOptions(), ModalNames.getMain());
+        },
+        "Switches froma light them to dark theme and vice-versa"
+        );
 
 function getAboutInfos() {
     let aboutInfos = [null, null];
@@ -159,10 +168,24 @@ let infoBack = new MenuItemInfo(
         "Go back to the main window"
         );
 
-let items = [infoBaseProbas, infoRules, infoPrecision, aboutInfos[0], aboutInfos[1], infoPersonal, infoBack];
+let items = [
+    infoBack,
+    infoBaseProbas,
+    infoRules,
+    infoPrecision,
+    infoTheme,
+    aboutInfos[0],
+    aboutInfos[1],
+    infoPersonal,
+    infoBack];
 // let items = [infoBaseProbas, infoRules, infoBack];
 let buttonsContainer = document.getElementById("menu-buttons");
 
+
+
+function displayExplanations(infoItem) {
+    document.getElementById("options-explanation").textContent = infoItem.getExplanation();
+}
 items.forEach((infoItem, index) => {
     // Create a button element
     const button = document.createElement('button');
@@ -181,8 +204,12 @@ items.forEach((infoItem, index) => {
             console.error(`calledFct for ${infoItem.getName()} is not a valid function.`);
         }
     });
+
+    /*button.addEventListener('mouseenter', () => {
+     displayExplanations(infoItem);
+     });*/
     button.addEventListener('pointerenter', () => {
-        document.getElementById("options-explanation").textContent = infoItem.getExplanation();
+        displayExplanations(infoItem);
     });
 
     // Append the button to the DOM (e.g., to a container element)

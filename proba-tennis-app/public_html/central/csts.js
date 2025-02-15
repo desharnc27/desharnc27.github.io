@@ -73,12 +73,12 @@ export class Csts {
     }
 
     static #standardProbas = [
-        "Hard women", "0.61", null,
+        "Hard women", "0.57", null,
         "Clay women", "0.56", null,
-        "Grass women", "0.66", null,
-        "Hard men", "0.68", null,
-        "Clay men", "0.63", null,
-        "Grass men", "0.73", null,
+        "Grass women", "0.59", null,
+        "Hard men", "0.66", null,
+        "Clay men", "0.635", null,
+        "Grass men", "0.69", null,
         "David vs Goliath", "0.55", "0.30"
     ];
 

@@ -32,7 +32,8 @@ function loadAboutText(lang) {
     }
 
     let filename = getFilename(lang);
-	console.log("attempt to open: " + filename);
+
+    console.log("attempt to open: " + filename);
     fetch(filename)
             .then(response => response.text())
             .then(text => {

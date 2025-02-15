@@ -1,11 +1,61 @@
-/* General Styles */
+:root {
+
+    --text-color: #090909;
+    --bg-color: #f3f3f3;
+    --icon-color: #bbbbbb;
+    --input-color: #99ff99;
+    --bg-details-color: #ffff33;
+    --border-color: #333333;
+    
+    --selected-color: #6666ff;
+    --hover-color: #999999;
+    --press-color: #7f7fcc;
+    --disabled-color: #222222;
+    
+    --twado-color: #fd8642
+
+}
+
+.dark-theme {
+    
+    --text-color: #f6f6f6;
+    --bg-color: #0c0c0c;
+    --icon-color: #444444;
+    --input-color: #660066;
+    --bg-details-color: #0000cc;
+    --border-color: #cccccc;
+    
+    --selected-color: #999900;
+    --hover-color: #666666;
+    --press-color: #808033;
+    --disabled-color: #dddddd;
+
+    --twado-color: #0279bd
+
+}
+
+body *,.modal-content{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+button, .btn-close {
+    color: var(--text-color);
+    background-color: var(--icon-color);
+}
+input, select {
+    color: var(--text-color);
+    background-color: var(--input-color);
+}
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    padding: 0;  
 }
+
+
+
 
 h1, h2 {
     text-align: center;
@@ -17,10 +67,9 @@ h1, h2 {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background: white;
-    border: 1px solid #ccc;
+    border: 1px solid ; 
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--selected-color);
 }
 
 /* Section Styles */
@@ -30,7 +79,7 @@ section {
 
 section h2 {
     font-size: 1.5rem;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid ;
     padding-bottom: 5px;
 }
 
@@ -39,20 +88,19 @@ button {
     padding: 10px 15px;
     margin: 5px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid ;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #f0f0f0;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #e0e0e0;
+    background-color: var(--hover-color);
 }
 
 button:disabled {
-    background-color: #f9f9f9;
-    color: #aaa;
+    background-color: var(--disabled-color);
+    /*color: var(--button-disabled-text-color);*/
     cursor: not-allowed;
 }
 
@@ -66,7 +114,7 @@ table {
 table th, table td {
     text-align: center;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid ;
 }
 
 /* Serve Selection */
@@ -84,7 +132,7 @@ input[type="radio"] {
 input[type="text"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid ;
     border-radius: 5px;
     margin-top: 10px;
     text-align: center;
@@ -92,7 +140,7 @@ input[type="text"] {
 
 /* Results Panel */
 #results {
-    flex: 1;
+    flex: 12;
     text-align: center;
 }
 
@@ -104,7 +152,7 @@ input[type="text"] {
 
 /* Options Panel */
 #options {
-    flex: 1;
+    flex: 7;
 }
 
 #mode-selection, #options-button {
@@ -124,7 +172,7 @@ input[type="text"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    /*background: var(--bg-color);*/
     justify-content: center;
     align-items: center;
 }
@@ -134,7 +182,7 @@ input[type="text"] {
 }
 
 .modal-content {
-    background: white;
+    /*background: var(--bg-color);*/
     padding: 20px;
     border-radius: 8px;
     width: 90%;
@@ -143,18 +191,13 @@ input[type="text"] {
 }
 
 .modal .close-modal {
-    background-color: #d9534f;
-    color: white;
+    background-color: black;
     border: none;
     padding: 10px 15px;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
-}
-
-.modal .close-modal:hover {
-    background-color: #c9302c;
 }
 
 .options-results-container {
@@ -173,10 +216,12 @@ input[type="text"] {
 
 /* Keep text readable but truncatable */
 #rules-table td:first-child {
-    max-width:  40vw;  /* Limits attribute width */
+    max-width: 40vw;  /* Limits attribute width */
     overflow: hidden;
-    text-overflow: ellipsis; /* Adds "..." when text overflows */
-    white-space: nowrap; /* Prevents breaking into multiple lines */
+    text-overflow: ellipsis;  /* Enables truncation */
+    white-space: nowrap;  /* Prevents wrapping */
+    direction: rtl;  /* Makes ellipsis appear on the left */
+    text-align: left;  /* Ensures text still aligns normally */
 }
 
 /* Ensure arrows are always visible */
@@ -200,7 +245,7 @@ input[type="text"] {
 
 .highlight {
     font-size: 0.85em;
-    background-color: #ffffcc;
+    background-color: var(--bg-details-color);
     padding: 5px;
     margin-bottom: 10px;
     display: block;
@@ -209,14 +254,13 @@ input[type="text"] {
     transition: height 0.2s ease; /* Optional smooth animation */
 }
 
-
-
 #options-modal .modal-content {
     display: flex;
     flex-direction: column;
     max-height: 80vh; /* Ensures modal doesn’t exceed viewport height */
     overflow: hidden; /* Prevents modal overflow issues */
 }
+
 #menu-buttons {
     display: flex;
     flex-direction: column; /* Stack buttons vertically */
@@ -260,9 +304,9 @@ input[type="text"] {
     transform: translate(-50%, -50%);
     width: 95%;
     max-width: 700px; /* Prevent excessive width */
-    background: white;
+    /*background: var(--bg-color);*/
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--twado-color);
 }
 
 /* Ensure modal body is scrollable for long text */
@@ -280,13 +324,9 @@ input[type="text"] {
 }
 
 .btn-close {
-    background: none;
-    border: none;
     font-size: 1.5em;
     cursor: pointer;
-    color: black; /* Ensures visibility on light and dark backgrounds */
     font-weight: bold; /* Makes it thicker */
-    background-color: white;
     border-radius: 50%;
     padding: 5px;
 }
@@ -314,7 +354,7 @@ input[type="text"] {
     font-weight: bold;
     display: inline-block;
     padding: 5px 10px;
-    background-color: #f4f4f4;
+   /*background: var(--bg-color);*/
     border-radius: 5px;
 }
 
@@ -335,52 +375,42 @@ input[type="text"] {
 /* Individual buttons in the group */
 .button-group button {
     padding: 10px 15px;
-    border: 2px solid #ccc;
+    border: 2px solid ;
     border-radius: 5px;
     cursor: pointer;
-    background-color: white;
     font-size: 1rem;
     transition: all 0.3s;
 }
 
 /* Hover effect */
 .button-group button:hover {
-    background-color: #e0e0e0;
+    background-color: var(--hover-color);
 }
 
 /* Selected button */
 .button-group button.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #0056b3;
+    background-color:  var(--selected-color);
 }
-
 
 /* ------------ options button fanciness ------------ */
 
 #options-button {
-    background-color: rgba(100, 255, 100, 0.3); /* Standard blue */
-    color: white;
+    background-color: var(--input-color);
     font-weight: 600; /* Slightly bolder than normal */
     font-size: 1.05em; /* Just a tiny increase */
     padding: 8px 14px; /* Balanced padding */
-    border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border: 2px solid ; /* Subtle border */
     border-radius: 5px; /* Soft edges */
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
 #options-button:hover {
-    background-color: #005BAA; /* Slightly darker blue */
+    background-color: var(--hover-color); /* Slightly darker blue */
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
 }
 
 #options-button:active {
-    background-color: #003E7E; /* Even darker blue for click effect */
+    background-color: var(--selected-color); /* Even darker blue for click effect */
     transform: scale(0.98);
 }
-
-/* ------------ general small device fix ------------ */
-
-
-
