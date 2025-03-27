@@ -178,14 +178,35 @@ let items = [
     aboutInfos[1],
     infoPersonal,
     infoBack];
-// let items = [infoBaseProbas, infoRules, infoBack];
-let buttonsContainer = document.getElementById("menu-buttons");
 
+// debug code for items hidden
+/*
+ let troloSize = 500;
+ let debugAdder = [];
+ debugAdder.length = troloSize; 
+ for(let i = 0;i< troloSize;i++){
+ let trololo =  new MenuItemInfo(
+ "menu-troll-button-" + i,
+ "trololo" + i,
+ function () {
+ switchModal(ModalNames.getOptions(), ModalNames.getMain());
+ },
+ "Mother fkin test"
+ );
+ debugAdder[i] = trololo;
+ }
+ 
+ 
+ items = [...debugAdder, ...items];
+ */
 
 
 function displayExplanations(infoItem) {
     document.getElementById("options-explanation").textContent = infoItem.getExplanation();
 }
+
+
+let buttonsContainer = document.getElementById("menu-buttons");
 items.forEach((infoItem, index) => {
     // Create a button element
     const button = document.createElement('button');
@@ -205,9 +226,6 @@ items.forEach((infoItem, index) => {
         }
     });
 
-    /*button.addEventListener('mouseenter', () => {
-     displayExplanations(infoItem);
-     });*/
     button.addEventListener('pointerenter', () => {
         displayExplanations(infoItem);
     });
@@ -215,6 +233,9 @@ items.forEach((infoItem, index) => {
     // Append the button to the DOM (e.g., to a container element)
     buttonsContainer.appendChild(button); // Replace `document.body` with your specific container
 });
+
+buttonsContainer.scrollTop = 0; // Reset scroll position
+buttonsContainer.scrollHeight; // Trigger reflow
 
 
 
