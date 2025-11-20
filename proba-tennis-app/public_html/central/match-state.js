@@ -22,11 +22,20 @@ export class MatchState {
             this.#srv = 0;
             this.#srvTB = 0;
         } else {
-            this.#inJeuCurrentScore = ms.#inJeuCurrentScore.slice(0, 2);
-            this.#inSetCurrentScore = ms.#inSetCurrentScore.slice(0, 2);
-            this.#inMatchCurrentScore = ms.#inMatchCurrentScore.slice(0, 2);
-            this.#srv = ms.#srv;
-            this.#srvTB = ms.#srvTB;
+            if (ms.hasOwnProperty('srvTB')) {
+                //not in java version. Checks if ms comes from js load (no private att)
+                this.#inJeuCurrentScore = ms.inJeuCurrentScore.slice(0, 2);
+                this.#inSetCurrentScore = ms.inSetCurrentScore.slice(0, 2);
+                this.#inMatchCurrentScore = ms.inMatchCurrentScore.slice(0, 2);
+                this.#srv = ms.srv;
+                this.#srvTB = ms.srvTB;
+            } else {
+                this.#inJeuCurrentScore = ms.#inJeuCurrentScore.slice(0, 2);
+                this.#inSetCurrentScore = ms.#inSetCurrentScore.slice(0, 2);
+                this.#inMatchCurrentScore = ms.#inMatchCurrentScore.slice(0, 2);
+                this.#srv = ms.#srv;
+                this.#srvTB = ms.#srvTB;
+            }
         }
     }
 
@@ -330,5 +339,15 @@ export class MatchState {
 
     editSwitchSrvTB() {
         this.editSrvTB(1 - this.#srvTB);
+    }
+
+    toJSON() {
+        return {
+            inJeuCurrentScore: this.#inJeuCurrentScore,
+            inSetCurrentScore: this.#inSetCurrentScore,
+            inMatchCurrentScore: this.#inMatchCurrentScore,
+            srv: this.#srv,
+            srvTB: this.#srvTB
+        };
     }
 }

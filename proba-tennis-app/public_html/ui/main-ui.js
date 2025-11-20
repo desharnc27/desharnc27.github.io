@@ -5,6 +5,7 @@ import { Rules } from '../central/rules.js';
 import { MatchState } from '../central/match-state.js';
 import { Calx } from '../central/calx.js';
 import { Csts } from '../central/csts.js';
+import { SaveUnit } from '../central/save-unit.js';
 import { UtilsOther } from '../intools/utils-other.js';
 import { Utils } from '../intools/utils.js';
 import { StrProba } from '../intools/str-proba.js';
@@ -26,8 +27,8 @@ let rules;
 let strProbas;
 let calx;
 
-let precision;
-let asPercentage;
+let resPrecision;
+let resAsPercentage;
 
 // Utility function
 
@@ -158,7 +159,7 @@ function displayResultingProbas(values) {
     ];
     let message = [];
     for (let i = 0; i < 4; i++) {
-        const value = values === null ? " ? " : Utils.probaFormat(values[i], precision, asPercentage);
+        const value = values === null ? " ? " : Utils.probaFormat(values[i], resPrecision, resAsPercentage);
         message.push(`${titles[i]} ${value}`);
     }
     displayMessage(message);
@@ -273,8 +274,8 @@ export function handleBaseProbasInput(serveProb, returnProb) {
 
 export function updatePrecisionValues(asPercentageX, precisionX) {
 
-    asPercentage = asPercentageX;
-    precision = precisionX;
+    resAsPercentage = asPercentageX;
+    resPrecision = precisionX;
     maybeRefreshPostMod();
     // displayResultingProbas(null);
 }
@@ -302,7 +303,7 @@ function openBaseProbasUI() {
 }
 
 function openMenuUI() {
-    operationsToSwitchToMenuWindow(rules, strProbas, precision, asPercentage);
+    operationsToSwitchToMenuWindow(rules, strProbas, resPrecision, resAsPercentage);
 }
 
 export function getBaseProbaStrings() {
@@ -359,7 +360,6 @@ getScoreArrows().forEach((button, index) => {
     });
 });
 
-
 function srvRadioTriggered(forTB, index) {
     if (forTB) {
         ms.editSrvTB(index);
@@ -370,6 +370,8 @@ function srvRadioTriggered(forTB, index) {
         maybeRefreshPostMod();
     }
 }
+
+
 
 // Serve Selection
 getServeRadios().forEach((radio, index) => {
@@ -382,7 +384,54 @@ getTBServeRadios().forEach((radio, index) => {
 
 document.getElementById('menu').addEventListener('click', openMenuUI);
 
+function closeSaveOps() {
+    // debugger;
+    try {
+        const su = new SaveUnit(strProbas, rules, ms, resAsPercentage, resPrecision);
+        var jsonStr = JSON.stringify(su);
+        localStorage.setItem("saveUnit", jsonStr);
+        // alert('closeSaveOps() performed');
+    } catch (e) {
+        console.error("closeSaveOps():", e);
+    }
 
-precision = 3;
-asPercentage = true;
-maybeRefreshPostMod();
+}
+
+function loadSaveOps() {
+    // debugger;
+    const jsonSU = localStorage.getItem("saveUnit");
+
+    if (!jsonSU) {
+        setRPM(Rules.createRuleById(0),
+                StrProba.attemptBuild("0.6"),
+                StrProba.attemptBuild("0.4"),
+                null);
+        resAsPercentage = true;
+        resPrecision = 3;
+    } else{
+        const su = JSON.parse(jsonSU);
+
+        var tempMs = su.matchState;
+        var tempRules = su.rules;
+        setRPM(tempRules,
+                StrProba.attemptBuild(su.strProbas[0].str),
+                StrProba.attemptBuild(su.strProbas[1].str),
+                tempMs);
+        resAsPercentage = su.resAsPercentage;
+        resPrecision = su.resPrecision;
+    }
+    updateScoreDisplay();
+    maybeRefreshPostMod();
+
+
+}
+
+
+window.addEventListener('beforeunload', () => {
+    closeSaveOps();
+});
+
+// Load it back when page opens again
+window.addEventListener('DOMContentLoaded', () => {
+    loadSaveOps();
+});

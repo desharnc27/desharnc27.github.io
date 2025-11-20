@@ -127,4 +127,11 @@ export class StrProba {
         return res;
     }
 
+    toJSON() {
+        return {
+            value: this.#value,
+            str: this.#str
+        };
+    }
+
 }
