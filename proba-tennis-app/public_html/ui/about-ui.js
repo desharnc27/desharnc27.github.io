@@ -40,7 +40,7 @@ function loadAboutText(lang) {
                 const htmlContent = marked.parse(text); // Convert Markdown to HTML
                 aboutCache[lang] = htmlContent; // Cache the sanitized version
                 document.getElementById('about-modal-body').innerHTML = DOMPurify.sanitize(htmlContent); // Secure insert
-                switchModal(ModalNames.getOptions(), ModalNames.getAbout());
+                switchModal(ModalNames.getAboutOptions(), ModalNames.getAbout());
             })
             .catch(error => {
                 document.getElementById('about-modal-body').textContent = "Error loading content.";

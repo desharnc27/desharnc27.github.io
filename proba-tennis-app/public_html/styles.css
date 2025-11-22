@@ -155,7 +155,7 @@ input[type="text"] {
     flex: 7;
 }
 
-#mode-selection, #options-button {
+#mode-selection, #optionsmore-button {
     text-align: center;
     flex: 1;
 }
@@ -258,7 +258,7 @@ input[type="text"] {
     line-height: 1.5; /* Ensure enough space between lines */
 }
 
-#options-modal .modal-content {
+#menus-scope .modal-content {
     display: flex;
     flex-direction: column;
     max-height: 80vh; /* Ensures modal doesn’t exceed viewport height */
@@ -267,7 +267,7 @@ input[type="text"] {
 
 
 
-#menu-buttons {
+#menus-scope .modal-buttons {
     display: flex;
     flex-direction: column; /* Stack buttons vertically */
     gap: 10px; /* Adds spacing between buttons */
@@ -394,7 +394,7 @@ input[type="text"] {
 
 /* ------------ options button fanciness ------------ */
 
-#options-button {
+#optionsmore-button {
     background-color: var(--input-color);
     font-weight: 600; /* Slightly bolder than normal */
     font-size: 1.05em; /* Just a tiny increase */
@@ -405,12 +405,12 @@ input[type="text"] {
     transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
-#options-button:hover {
+#optionsmore-button:hover {
     background-color: var(--hover-color); /* Slightly darker blue */
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
 }
 
-#options-button:active {
+#optionsmore-button:active {
     background-color: var(--selected-color); /* Even darker blue for click effect */
     transform: scale(0.98);
 }

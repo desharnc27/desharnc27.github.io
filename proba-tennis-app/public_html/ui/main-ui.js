@@ -388,7 +388,7 @@ function closeSaveOps() {
     // debugger;
     try {
         const su = new SaveUnit(strProbas, rules, ms, resAsPercentage, resPrecision);
-        var jsonStr = JSON.stringify(su);
+        let jsonStr = JSON.stringify(su);
         localStorage.setItem("saveUnit", jsonStr);
         // alert('closeSaveOps() performed');
     } catch (e) {
@@ -408,11 +408,11 @@ function loadSaveOps() {
                 null);
         resAsPercentage = true;
         resPrecision = 3;
-    } else{
+    } else {
         const su = JSON.parse(jsonSU);
 
-        var tempMs = su.matchState;
-        var tempRules = su.rules;
+        let tempMs = su.matchState;
+        let tempRules = su.rules;
         setRPM(tempRules,
                 StrProba.attemptBuild(su.strProbas[0].str),
                 StrProba.attemptBuild(su.strProbas[1].str),

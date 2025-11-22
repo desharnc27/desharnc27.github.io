@@ -77,7 +77,7 @@
                                 <label><input type="radio" name="mode" value="game-on">Match Flow</label>
                                 <!--<button id="refresh-button">Refresh Calculations</button>-->
                             </div>
-                            <div id="options-button">
+                            <div id="optionsmore-button">
                                 <button id="menu">Options & More</button>
                             </div>
                         </div>
@@ -95,23 +95,41 @@
             </div>
         </div>
 
-        <!-- Intermediate Options Modal -->
-        <div id="options-modal" class="modal hidden">
-            <div class="modal-content">
+        <div id="menus-scope">
+            <!-- Intermediate Options Modal -->
+            <div id="options-modal" class="modal hidden">
+                <div class="modal-content">
 
-                <h2>Options</h2>
-                <!-- Details Text -->
-                <p id="options-explanation" class="highlight">Hover over or click a button for details.</p>
+                    <h2>Options</h2>
+                    <!-- Details Text -->
+                    <p id="options-explanation" class="highlight">Hover over or click a button for details.</p>
 
-                <div id="menu-buttons" class="modal-buttons" >
-                    <!-- JavaScript will populate buttons here -->
-                    <!-- Example button structure (to be dynamically added by JS): -->
-                    <!-- <button data-translate="edit_probabilities">Edit Base Probabilities</button> -->
+                    <div id="menu-buttons" class="modal-buttons" >
+                        <!-- JavaScript will populate buttons here -->
+                        <!-- Example button structure (to be dynamically added by JS): -->
+                        <!-- <button data-translate="edit_probabilities">Edit Base Probabilities</button> -->
 
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post-Intermediate About Modal -->
+            <div id="options-about-modal" class="modal hidden">
+                <div class="modal-content">
+
+                    <h2>Options</h2>
+                    <!-- Details Text -->
+                    <p id="options-about-explanation" class="highlight">Hover over or click a button for details.</p>
+
+                    <div id="menu-about-buttons" class="modal-buttons" >
+                        <!-- JavaScript will populate buttons here -->
+                        <!-- Example button structure (to be dynamically added by JS): -->
+                        <!-- <button data-translate="edit_probabilities">Edit Base Probabilities</button> -->
+
+                    </div>
                 </div>
             </div>
         </div>
-
 
         <!-- Probas Modal -->
         <div id="probas-modal" class="modal hidden">

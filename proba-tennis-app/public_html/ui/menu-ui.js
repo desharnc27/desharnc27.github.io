@@ -130,12 +130,21 @@ let infoTheme = new MenuItemInfo(
         "Switches froma light them to dark theme and vice-versa"
         );
 
-function getAboutInfos() {
-    let aboutInfos = [null, null];
+let infoAbout = new MenuItemInfo(
+        "menu-about-button",
+        "About",
+        function () {
+            switchModal(ModalNames.getOptions(), ModalNames.getAboutOptions());
+        },
+        "Learn about the project"
+        );
+
+function getProjectInfos() {
+    let projectInfos = [null, null];
     let langnames = ["English", "Français"];
     let langs = ["eng", "fra"];
     for (let i = 0; i < 2; i++) {
-        aboutInfos[i] = new MenuItemInfo(
+        projectInfos[i] = new MenuItemInfo(
                 "menu-!-about-button".replace("!", langs[i]),
                 "About the project (!)".replace("!", langnames[i]),
                 function () {
@@ -145,12 +154,29 @@ function getAboutInfos() {
 behind the calculations, etc...".replace("!", langnames[i])
                 );
     }
-    return aboutInfos;
+    return projectInfos;
 }
 
-let aboutInfos = getAboutInfos();
+function getBackInfos() {
+    let backInfos = [null, null];
+    let fromModal = [ModalNames.getOptions(), ModalNames.getAboutOptions()];
+    let toModal = [ModalNames.getMain(), ModalNames.getOptions()];
+    for (let i = 0; i < 2; i++) {
+        backInfos[i] = new MenuItemInfo(
+                "menu-!-back-button".replace("!", i),
+                "Back",
+                function () {
+                    switchModal(fromModal[i], toModal[i]);
+                },
+                "Go back to the previous window"
+                );
+    }
+    return backInfos;
+}
 
-let infoPersonal = new MenuItemInfo(
+let projectInfos = getProjectInfos();
+
+let personalInfo = new MenuItemInfo(
         "menu-personal-button",
         "About the author",
         function () {
@@ -159,25 +185,23 @@ let infoPersonal = new MenuItemInfo(
         "Read more about the author of this website."
         );
 
-let infoBack = new MenuItemInfo(
-        "menu-back-button",
-        "Back",
-        function () {
-            switchModal(ModalNames.getOptions(), ModalNames.getMain());
-        },
-        "Go back to the main window"
-        );
+let infoBacks = getBackInfos();
 
-let items = [
-    infoBack,
+let centralItems = [
+    infoBacks[0],
     infoBaseProbas,
     infoRules,
     infoPrecision,
     infoTheme,
-    aboutInfos[0],
-    aboutInfos[1],
-    infoPersonal,
-    infoBack];
+    infoAbout,
+    infoBacks[0]];
+
+let aboutItems = [
+    // infoBacks[1],
+    projectInfos[0],
+    projectInfos[1],
+    personalInfo,
+    infoBacks[1]];
 
 // debug code for items hidden
 /*
@@ -200,42 +224,53 @@ let items = [
  items = [...debugAdder, ...items];
  */
 
-
-function displayExplanations(infoItem) {
-    document.getElementById("options-explanation").textContent = infoItem.getExplanation();
+function displayExplanations(boxName, infoItem) {
+    document.getElementById(boxName).textContent = infoItem.getExplanation();
+}
+function displayCentralExplanations(infoItem) {
+    displayExplanations("options-explanation", infoItem);
+}
+function displayAboutExplanations(infoItem) {
+    displayExplanations("options-about-explanation", infoItem);
 }
 
 
-let buttonsContainer = document.getElementById("menu-buttons");
-items.forEach((infoItem, index) => {
-    // Create a button element
-    const button = document.createElement('button');
 
-    // Set the button's id and text
-    button.id = infoItem.getHtmlId();
-    button.textContent = infoItem.getName();
+let buttonGroupsNames = ["menu-buttons", "menu-about-buttons"];
+let boxExplaningNames = ["options-explanation", "options-about-explanation"];
+let itemGroups = [centralItems, aboutItems];
+for (let i = 0; i < 2; i++) {
+    let buttonsContainer = document.getElementById(buttonGroupsNames[i]);
+    let itemGroup = itemGroups[i];
+    itemGroup.forEach((infoItem, index) => {
+        // Create a button element
+        const button = document.createElement('button');
 
-    // Add a click event listener to trigger the calledFct
-    button.addEventListener('click', () => {
-        console.log("button.addEventListener");
-        const action = infoItem.getCalledFct();
-        if (typeof action === 'function') {
-            action();
-        } else {
-            console.error(`calledFct for ${infoItem.getName()} is not a valid function.`);
-        }
+        // Set the button's id and text
+        button.id = infoItem.getHtmlId();
+        button.textContent = infoItem.getName();
+
+        // Add a click event listener to trigger the calledFct
+        button.addEventListener('click', () => {
+            console.log("button.addEventListener");
+            const action = infoItem.getCalledFct();
+            if (typeof action === 'function') {
+                action();
+            } else {
+                console.error(`calledFct for ${infoItem.getName()} is not a valid function.`);
+            }
+        });
+
+        button.addEventListener('pointerenter', () => {
+            displayExplanations(boxExplaningNames[i], infoItem);
+        });
+
+        // Append the button to the DOM (e.g., to a container element)
+        buttonsContainer.appendChild(button); // Replace `document.body` with your specific container
     });
 
-    button.addEventListener('pointerenter', () => {
-        displayExplanations(infoItem);
-    });
+    buttonsContainer.scrollTop = 0; // Reset scroll position
+    buttonsContainer.scrollHeight; // Trigger reflow
 
-    // Append the button to the DOM (e.g., to a container element)
-    buttonsContainer.appendChild(button); // Replace `document.body` with your specific container
-});
-
-buttonsContainer.scrollTop = 0; // Reset scroll position
-buttonsContainer.scrollHeight; // Trigger reflow
-
-
+}
 
